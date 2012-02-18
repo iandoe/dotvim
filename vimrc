@@ -72,7 +72,6 @@ set background=dark " When set to "dark", Vim will try to use colors that look
  
 set mouse=a         " Enable the use of the mouse.
 
-set cursorline
 set cursorcolumn
 
 set wildmenu
@@ -84,9 +83,10 @@ au InsertLeave * hi StatusLine  guifg=#d3d3d5 guibg=#444444
 set statusline=%<%f\ %y%h%m%r\ PWD:%{getcwd()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 
-set foldmethod=indent " Set the fold method to automatic using the files indenting
+"set foldmethod=indent " Set the fold method to automatic using the files indenting
 
 " Pathogen
+filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
@@ -112,7 +112,7 @@ let delimitMate_expand_cr          = 1
 let delimitMate_expand_space       = 1
 let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs         = '(:),[:],{:},<:>'
-let delimitMate_quotes             = "\" ' ` | %"
+let delimitMate_quotes             = "\" ' ` |"
 
 " Set Keymappings
 
@@ -152,7 +152,7 @@ autocmd FileType less set omnifunc=csscomplete#CompleteCSS
 
 
 " Set various GUI and Appearance Behaviour
-set guifont=Monaco:h11 " Set the Font
+set guifont=Anonymous:h14 " Set the Font
 set guioptions=aAce " Set the Gui options
 colors mustang " Set the colorscheme
 filetype plugin indent on
