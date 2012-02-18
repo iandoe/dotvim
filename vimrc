@@ -78,8 +78,8 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Status line
-au InsertEnter * hi StatusLine guibg=#ff9800 guifg=#000000
-au InsertLeave * hi StatusLine  guifg=#d3d3d5 guibg=#444444
+"au InsertEnter * hi StatusLine guibg=#ff9800 guifg=#000000
+"au InsertLeave * hi StatusLine  guifg=#d3d3d5 guibg=#444444
 set statusline=%<%f\ %y%h%m%r\ PWD:%{getcwd()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 
@@ -94,7 +94,8 @@ call pathogen#runtime_append_all_bundles()
 " Always show tab
 set showtabline=2
 set nocompatible
-set noexpandtab
+" Use spaces
+set expandtab
 " No backup or swap file
 set nobackup
 set nowritebackup
@@ -138,18 +139,13 @@ vmap <C-Right> >gv
 " Maps arrow keys in visual mode to select by word (faster)
 vmap <Left> b
 vmap <Right> e
-" Closetag plugin
+
+" Closetag plugi
 :au Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
+
 " Less CSS filetype syntax
 syntax on
 :au BufNewFile,BufRead *.less set filetype=less
-" Supertab
-
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType less set omnifunc=csscomplete#CompleteCSS
-
 
 " Set various GUI and Appearance Behaviour
 set guifont=Anonymous:h14 " Set the Font
@@ -157,3 +153,7 @@ set guioptions=aAce " Set the Gui options
 colors mustang " Set the colorscheme
 filetype plugin indent on
 syntax on
+
+" NERDtree
+let NERDTreeShowBookmarks=1
+let NERDTreeWinPos="right"
