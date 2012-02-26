@@ -1,159 +1,181 @@
-" .vimrc
-" See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
-
-" For multi-byte character support (CJK support, for example):
-"set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
-       
-set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
-set softtabstop=2
-set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
- 
-set smarttab        " When on, a <Tab> in front of a line inserts blanks
-                    " according to 'shiftwidth'. 'tabstop' is used in other
-                    " places. A <BS> will delete a 'shiftwidth' worth of space
-                    " at the start of the line.
- 
-set showcmd         " Show (partial) command in status line.
-
-set number          " Show line numbers.
-
-set showmatch       " When a bracket is inserted, briefly jump to the matching
-                    " one. The jump is only done if the match can be seen on the
-                    " screen. The time to show the match can be set with
-                    " 'matchtime'.
- 
-set hlsearch        " When there is a previous search pattern, highlight all
-                    " its matches.
- 
-set incsearch       " While typing a search command, show immediately where the
-                    " so far typed pattern matches.
- 
-set ignorecase      " Ignore case in search patterns.
- 
-set smartcase       " Override the 'ignorecase' option if the search pattern
-                    " contains upper case characters.
- 
-set backspace=indent,eol,start " Influences the working of <BS>, <Del>, CTRL-W
-                    " and CTRL-U in Insert mode. This is a list of items,
-                    " separated by commas. Each item allows a way to backspace
-                    " over something.
- 
-set autoindent      " Copy indent from current line when starting a new line
-                    " (typing <CR> in Insert mode or when using the "o" or "O"
-                    " command).
- 
-set smartindent     " Do smart autoindenting when starting a new line. Works
-                    " for C-like programs, but can also be used for other
-                    " languages.
- 
-set textwidth=79    " Maximum width of text that is being inserted. A longer
-                    " line will be broken after white space to get this width.
- 
-set formatoptions=c,q,r,t " This is a sequence of letters which describes how
-                    " automatic formatting is to be done.
-                    "
-                    " letter    meaning when present in 'formatoptions'
-                    " ------    ---------------------------------------
-                    " c         Auto-wrap comments using textwidth, inserting
-                    "           the current comment leader automatically.
-                    " q         Allow formatting of comments with "gq".
-                    " r         Automatically insert the current comment leader
-                    "           after hitting <Enter> in Insert mode. 
-                    " t         Auto-wrap text using textwidth (does not apply
-                    "           to comments)
- 
-set ruler           " Show the line and column number of the cursor position,
-                    " separated by a comma.
- 
-set background=dark " When set to "dark", Vim will try to use colors that look
-                    " good on a dark background. When set to "light", Vim will
-                    " try to use colors that look good on a light background.
-                    " Any other value is illegal.
- 
-set mouse=a         " Enable the use of the mouse.
-
-set cursorcolumn
-
-set wildmenu
-set wildmode=list:longest,full
-
-" Status line
-"au InsertEnter * hi StatusLine guibg=#ff9800 guifg=#000000
-"au InsertLeave * hi StatusLine  guifg=#d3d3d5 guibg=#444444
-set statusline=%<%f\ %y%h%m%r\ PWD:%{getcwd()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=2
-
-"set foldmethod=indent " Set the fold method to automatic using the files indenting
-
 " Pathogen
 filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+filetype plugin indent on
 
-" Set Misc stuff
-" Always show tab
-set showtabline=2
+" Set vi compatibility to off
 set nocompatible
+" Use utf8
+set encoding=utf-8
+" Turn off modelines
+set modelines=0
+" Map <Leader> to ,
+let g:mapleader = ","
+
+" Set linenumber to relative
+" set number
+set relativenumber
+" 3 lines above and below cursor when scrolling
+set scrolloff=3
+
+" Set line wrap
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set smarttab
 " Use spaces
 set expandtab
+" Show commands in normal mode
+set showcmd
+" Save after losing focus
+au FocusLost * :wa
+"  Highlight search as you type
+set showmatch
+set hlsearch
+set incsearch
+" applies substitutions globally on lines
+set gdefault
+" lowercase search will be case-insensitive, uppercase search will be case-sensitive
+set ignorecase
+set smartcase
+" Set backspace behaviour
+set backspace=indent,eol,start
+" Copy indent from current line when starting a new line
+set autoindent
+set smartindent
+
+" Deal with long lines
+set textwidth=79
+
+set formatoptions=c,q,r,t
+set ruler
+
+" Set background to dark
+set background=dark
+
+" Enable the use of the mouse.
+set mouse=a
+" Enable cursor column highlight
+set cursorcolumn
+" Set menu behaviour
+set wildmenu
+set wildmode=list:longest,full
+" Status line
+set laststatus=2
+
+" Set Misc stuff
+" Always show tabs
+set showtabline=2
 " No backup or swap file
 set nobackup
 set nowritebackup
 set noswapfile
+" Undofile
+set undofile
 
 " Set list to show invisible chars
 set list
- 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
+" Get rid of arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
 
+" Mapping for tabnav
+nmap <c-left> gT
+nmap <c-right> gt
+
+let g:yankring_replace_n_pkey = '<c-z>'
+let g:yankring_replace_n_nkey = '<m-n>'
 " Set delimitMate Options
 let delimitMate_expand_cr          = 1
 let delimitMate_expand_space       = 1
 let delimitMate_balance_matchpairs = 1
-let delimitMate_matchpairs         = '(:),[:],{:},<:>'
+let delimitMate_matchpairs         = '(:),[:],{:}'
 let delimitMate_quotes             = "\" ' ` |"
+" NERDtree
+" map <leader>nt to toggle nerdtree
+nmap <Leader>nt :NERDTreeToggle<CR>
+" map <leader>gu to toggle gundo
+nmap <Leader>gu :GundoToggle<CR>
+" Set NERDtree display options
+let NERDTreeShowBookmarks=1
+let NERDTreeWinPos="right"
+let NERDTreeMinimalUI=1
+
+" Set Powerline plugin display mode
+let g:Powerline_symbols = 'unicode'
 
 " Set Keymappings
-
-" Map <Leader> to , 
-let g:mapleader = ","
-
-" Map <Leader>nt to toggle NERDtree
-nmap <Leader>nt :NERDTreeToggle<CR> 
+" Map ,yr to :YRShow (YankRing)
+nmap <Leader>yr :YRShow<CR>
 
 " Map ,hl to turnoff search highlight
-set nohlsearch
 nmap <Leader>hl :nohlsearch<CR>
-
-" Align keymaps (Ruby specific for now)
-" Route Align
-vmap <Leader>ra :Align :to => 'W'<CR>
 
 " Visual text bubbling using unimpaired plugin
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 vmap <C-Left> <gv
 vmap <C-Right> >gv
-" Maps arrow keys in visual mode to select by word (faster)
-vmap <Left> b
-vmap <Right> e
 
-" Closetag plugi
+" Closetag plugin
 :au Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
 
 " Less CSS filetype syntax
-syntax on
 :au BufNewFile,BufRead *.less set filetype=less
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+    %s/\s\+$//e
+:endfunction
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
 
 " Set various GUI and Appearance Behaviour
 set guifont=Anonymous:h14 " Set the Font
 set guioptions=aAce " Set the Gui options
 colors mustang " Set the colorscheme
-filetype plugin indent on
 syntax on
 
-" NERDtree
-let NERDTreeShowBookmarks=1
-let NERDTreeWinPos="right"
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
