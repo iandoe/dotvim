@@ -36,7 +36,6 @@ set showcmd
 au FocusLost * :wa
 "  Highlight search as you type
 set showmatch
-set hlsearch
 set incsearch
 " applies substitutions globally on lines
 set gdefault
@@ -119,6 +118,8 @@ let NERDTreeMinimalUI=1
 
 " Set Powerline plugin display mode
 let g:Powerline_symbols = 'unicode'
+" Put Gundo on the right side of the window
+let g:gundo_right=1
 
 " Set Keymappings
 " Map ,yr to :YRShow (YankRing)
@@ -154,28 +155,3 @@ set guifont=Anonymous:h14 " Set the Font
 set guioptions=aAce " Set the Gui options
 colors mustang " Set the colorscheme
 syntax on
-
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces

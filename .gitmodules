@@ -58,3 +58,6 @@
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = https://github.com/chrismetcalf/vim-yankring.git
+[submodule "bundle/rparentheses"]
+	path = bundle/rparentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
