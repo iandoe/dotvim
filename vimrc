@@ -151,7 +151,8 @@ vmap <C-Right> >gv
 " Closetag plugin
 :au Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
 
-" Less CSS filetype syntax
+" LESS/SCSS CSS filetype syntax
+:au BufRead,BufNewFile *.scss set filetype=scss
 :au BufNewFile,BufRead *.less set filetype=less
 
 " Removes trailing spaces

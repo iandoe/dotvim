@@ -25,5 +25,4 @@ and a handful of plugins :
 * [yankring](https://github.com/chrismetcalf/vim-yankring)
 * [css-colors](https://github.com/skammer/vim-css-color)
 * [colorx](https://github.com/iandoe/vim-osx-colorpickern)
-
-
+* [scss-syntax](http://github.com/cakebaker/scss-syntax.vim.git)
