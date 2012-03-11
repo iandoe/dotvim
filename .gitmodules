@@ -10,9 +10,6 @@
 [submodule "bundle/repeat"]
 	path = bundle/repeat
 	url = http://github.com/tpope/vim-repeat.git
-[submodule "bundle/align"]
-	path = bundle/align
-	url = git://github.com/tsaleh/vim-align.git
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = git://github.com/Raimondi/delimitMate.git
@@ -58,6 +55,15 @@
 [submodule "bundle/yankring"]
 	path = bundle/yankring
 	url = https://github.com/chrismetcalf/vim-yankring.git
-[submodule "bundle/rparentheses"]
-	path = bundle/rparentheses
-	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "bundle/css-colors"]
+	path = bundle/css-colors
+	url = git://github.com/skammer/vim-css-color.git
+[submodule "bundle/colorx"]
+	path = bundle/colorx
+	url = git://github.com/iandoe/vim-osx-colorpicker.git
+[submodule "bundle/pathogen"]
+	path = bundle/pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git

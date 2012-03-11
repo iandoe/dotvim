@@ -1,8 +1,11 @@
 " Pathogen
-filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+syntax on
 filetype plugin indent on
+
+" Enable matchit
+runtime $VIMRUNTIME/macros/matchit.vim
 
 " Set vi compatibility to off
 set nocompatible
@@ -15,6 +18,7 @@ let g:mapleader = ","
 
 " Set linenumber to relative
 " set number
+" Set linenumber to relative
 set relativenumber
 " 3 lines above and below cursor when scrolling
 set scrolloff=3
@@ -23,7 +27,7 @@ set scrolloff=3
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-
+" Tab settings
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -60,15 +64,15 @@ set background=dark
 " Enable the use of the mouse.
 set mouse=a
 " Enable cursor column highlight
-set cursorcolumn
+"set cursorcolumn
 " Set menu behaviour
 set wildmenu
 set wildmode=list:longest,full
-" Status line
+" Always show status line
 set laststatus=2
 
 " Set Misc stuff
-" Always show tabs
+" Always show tabs (nav)
 set showtabline=2
 " No backup or swap file
 set nobackup
@@ -98,6 +102,16 @@ nnoremap k gk
 nmap <c-left> gT
 nmap <c-right> gt
 
+" Use Ctrl-B to navigate the buffers with CtrlP plugin
+nmap <c-b> :CtrlPBuffer<cr>
+
+
+" Map ultisnips to behave like textmate/snipmate snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical" 
+
 let g:yankring_replace_n_pkey = '<c-z>'
 let g:yankring_replace_n_nkey = '<m-n>'
 " Set delimitMate Options
@@ -106,7 +120,7 @@ let delimitMate_expand_space       = 1
 let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs         = '(:),[:],{:}'
 let delimitMate_quotes             = "\" ' ` |"
-" NERDtree
+" NERDtre
 " map <leader>nt to toggle nerdtree
 nmap <Leader>nt :NERDTreeToggle<CR>
 " map <leader>gu to toggle gundo
@@ -145,13 +159,7 @@ function TrimWhiteSpace()
     %s/\s\+$//e
 :endfunction
 
-autocmd FileWritePre    * :call TrimWhiteSpace()
-autocmd FileAppendPre   * :call TrimWhiteSpace()
-autocmd FilterWritePre  * :call TrimWhiteSpace()
-autocmd BufWritePre     * :call TrimWhiteSpace()
-
 " Set various GUI and Appearance Behaviour
 set guifont=Anonymous:h14 " Set the Font
 set guioptions=aAce " Set the Gui options
-colors mustang " Set the colorscheme
-syntax on
+colors railscasts " Set the colorscheme

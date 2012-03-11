@@ -1,7 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/motoko/Downloads/Developer Color Picker/Read Me.rtfd'
 let g:netrw_dirhist_2='/Users/motoko/Code/RoR/blog'
 let g:netrw_dirhist_3='/Users/motoko/Code/railsapp'
 let g:netrw_dirhist_4='/Users/motoko/Code/blog'
 let g:netrw_dirhist_5='/Users/motoko/Code'
+let g:netrw_dirhist_6='/Applications/MacVim.app/Contents/Resources/vim/runtime'
+let g:netrw_dirhist_7='/Users/motoko/.vim/.git'
