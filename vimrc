@@ -1,3 +1,5 @@
+" Set vi compatibility to off
+set nocompatible
 " Pathogen
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -7,8 +9,6 @@ filetype plugin indent on
 " Enable matchit
 runtime $VIMRUNTIME/macros/matchit.vim
 
-" Set vi compatibility to off
-set nocompatible
 " Use utf8
 set encoding=utf-8
 " Turn off modelines
@@ -21,16 +21,21 @@ let g:mapleader = ","
 " Set linenumber to relative
 set relativenumber
 " 3 lines above and below cursor when scrolling
+set formatoptions-=o "dont continue comments when pushing o/O
+set formatoptions=cqrn1t
+
+"vertical/horizontal scroll off settings
 set scrolloff=3
+set sidescrolloff=7
+set sidescroll=1
 
 " Set line wrap
 set wrap
 set textwidth=79
-set formatoptions=qrn1
 " Tab settings
-set tabstop=2
+set tabstop    =2
 set softtabstop=2
-set shiftwidth=2
+set shiftwidth =2
 set smarttab
 " Use spaces
 set expandtab
@@ -55,7 +60,6 @@ set smartindent
 " Deal with long lines
 set textwidth=79
 
-set formatoptions=c,q,r,t
 set ruler
 
 " Set background to dark
@@ -79,6 +83,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 " Undofile
+set undodir=~/.vim/undofiles
 set undofile
 
 " Set list to show invisible chars
@@ -98,6 +103,13 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" QuickHl
+nmap <Leader>l <Plug>(quickhl-toggle)
+nmap <Leader>r <Plug>(quickhl-reset)
+
+" Mapping for hlsearch
+set hlsearch
+nmap <Leader>h :set hlsearch!<cr>
 " Mapping for tabnav
 nmap <c-left> gT
 nmap <c-right> gt
@@ -106,6 +118,8 @@ nmap <c-right> gt
 nmap <c-b> :CtrlPBuffer<cr>
 
 
+" Use the snippets directory for ultisnips
+let g:UltiSnipsSnippetDirectories=["snippets"]
 " Map ultisnips to behave like textmate/snipmate snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -131,7 +145,6 @@ let NERDTreeWinPos="right"
 let NERDTreeMinimalUI=1
 
 " Set Powerline plugin display mode
-let g:Powerline_symbols = 'unicode'
 " Put Gundo on the right side of the window
 let g:gundo_right=1
 
@@ -154,11 +167,6 @@ vmap <C-Right> >gv
 " LESS/SCSS CSS filetype syntax
 :au BufRead,BufNewFile *.scss set filetype=scss
 :au BufNewFile,BufRead *.less set filetype=less
-
-" Removes trailing spaces
-function TrimWhiteSpace()
-    %s/\s\+$//e
-:endfunction
 
 " Set various GUI and Appearance Behaviour
 set guifont=Anonymous:h14 " Set the Font
