@@ -76,3 +76,9 @@
 [submodule "bundle/quickhl"]
 	path = bundle/quickhl
 	url = https://github.com/t9md/vim-quickhl.git
+[submodule "bundle/minibufexpl"]
+	path = bundle/minibufexpl
+	url = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "bundle/zencoding"]
+	path = bundle/zencoding
+	url = https://github.com/mattn/zencoding-vim.git

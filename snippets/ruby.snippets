@@ -3,6 +3,13 @@ snippet #! "#!/usr/bin/env ruby"
 $0
 endsnippet
 
+snippet : "Key value" 
+:${1:key} => :${2:value}
+endsnippet
+
+snippet req "require block"
+require '${1:sinatra}'
+endsnippet
 
 
 snippet #utf8 "# encoding: UTF-8"

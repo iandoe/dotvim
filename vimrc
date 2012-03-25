@@ -115,6 +115,7 @@ nmap <c-left> gT
 nmap <c-right> gt
 
 " Use Ctrl-B to navigate the buffers with CtrlP plugin
+map <Leader>b :TMiniBufExplorer<cr>
 nmap <c-b> :CtrlPBuffer<cr>
 
 
@@ -124,7 +125,7 @@ let g:UltiSnipsSnippetDirectories=["snippets"]
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical" 
+let g:UltiSnipsEditSplit="vertical"
 
 let g:yankring_replace_n_pkey = '<c-z>'
 let g:yankring_replace_n_nkey = '<m-n>'
@@ -153,7 +154,7 @@ let g:gundo_right=1
 nmap <Leader>yr :YRShow<CR>
 
 " Map ,hl to turnoff search highlight
-nmap <Leader>hl :nohlsearch<CR>
+nmap <Leader>hl :nohl<CR>
 
 " Visual text bubbling using unimpaired plugin
 vmap <C-Up> [egv
@@ -171,4 +172,28 @@ vmap <C-Right> >gv
 " Set various GUI and Appearance Behaviour
 set guifont=Anonymous:h14 " Set the Font
 set guioptions=aAce " Set the Gui options
-colors railscasts " Set the colorscheme
+colors Tomorrow-Night-Eighties " Set the colorscheme
+
+" Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=darkred guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" the above flashes annoyingly while typing, be calmer in insert mode
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+function! s:FixWhitespace(line1,line2)
+    let l:save_cursor = getpos(".")
+    silent! execute ':' . a:line1 . ',' . a:line2 . 's/\s\+$//'
+    call setpos('.', l:save_cursor)
+endfunction
+
+" Run :FixWhitespace to remove end of line white space.
+command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+
+" Remember cursor position on file opening
+if has("autocmd")
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+endif
