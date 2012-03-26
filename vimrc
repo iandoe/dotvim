@@ -21,8 +21,8 @@ let g:mapleader = ","
 " Set linenumber to relative
 set relativenumber
 " 3 lines above and below cursor when scrolling
-set formatoptions-=o "dont continue comments when pushing o/O
 set formatoptions=cqrn1t
+set formatoptions-=o "dont continue comments when pushing o/O
 
 "vertical/horizontal scroll off settings
 set scrolloff=3
@@ -30,6 +30,7 @@ set sidescrolloff=7
 set sidescroll=1
 
 " Set line wrap
+
 set wrap
 set textwidth=79
 " Tab settings
@@ -103,6 +104,10 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" fast eol line jump
+nnoremap gj }
+nnoremap gk {
+
 " QuickHl
 nmap <Leader>l <Plug>(quickhl-toggle)
 nmap <Leader>r <Plug>(quickhl-reset)
@@ -115,7 +120,7 @@ nmap <c-left> gT
 nmap <c-right> gt
 
 " Use Ctrl-B to navigate the buffers with CtrlP plugin
-map <Leader>b :TMiniBufExplorer<cr>
+let g:ctrlp_clear_cache_on_exit = 0
 nmap <c-b> :CtrlPBuffer<cr>
 
 
