@@ -1,22 +1,25 @@
 " Set vi compatibility to off
 set nocompatible
+set t_Co=256
 " Pathogen
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" Enable matchit
-runtime $VIMRUNTIME/macros/matchit.vim
+runtime macros/matchit.vim
 
 " Use utf8
 set encoding=utf-8
+set termencoding=utf-8
+set hidden
 " Turn off modelines
+set lz " lazy redraw"
 set modelines=0
 " Map <Leader> to ,
 let g:mapleader = ","
 
-" Set linenumber to relative
+" Set linenumber to absolute
 " set number
 " Set linenumber to relative
 set relativenumber
@@ -30,7 +33,6 @@ set sidescrolloff=7
 set sidescroll=1
 
 " Set line wrap
-
 set wrap
 set textwidth=79
 " Tab settings
@@ -57,6 +59,8 @@ set backspace=indent,eol,start
 " Copy indent from current line when starting a new line
 set autoindent
 set smartindent
+" Auto read changed files
+set autoread
 
 " Deal with long lines
 set textwidth=79
@@ -86,12 +90,17 @@ set noswapfile
 " Undofile
 set undodir=~/.vim/undofiles
 set undofile
-
+" Ignore undofiles
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\undofiles$\'
+  \ }
 " Set list to show invisible chars
 set list
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
+" Act like TextMate with Command-Enter
+inoremap <D-Enter> <Esc>o
 " Get rid of arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -107,10 +116,6 @@ nnoremap k gk
 " fast eol line jump
 nnoremap gj }
 nnoremap gk {
-
-" QuickHl
-nmap <Leader>l <Plug>(quickhl-toggle)
-nmap <Leader>r <Plug>(quickhl-reset)
 
 " Mapping for hlsearch
 set hlsearch
@@ -132,8 +137,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
-let g:yankring_replace_n_pkey = '<c-z>'
-let g:yankring_replace_n_nkey = '<m-n>'
 " Set delimitMate Options
 let delimitMate_expand_cr          = 1
 let delimitMate_expand_space       = 1
@@ -167,6 +170,20 @@ vmap <C-Down> ]egv
 vmap <C-Left> <gv
 vmap <C-Right> >gv
 
+" Neocomplcache settings
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+" AutoComplPop like behavior.
+let g:neocomplcache_enable_auto_select = 1
+
 " Closetag plugin
 :au Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
 
@@ -177,6 +194,7 @@ vmap <C-Right> >gv
 " Set various GUI and Appearance Behaviour
 set guifont=Anonymous:h14 " Set the Font
 set guioptions=aAce " Set the Gui options
+set cul " Highlight current line"
 colors Tomorrow-Night-Eighties " Set the colorscheme
 
 " Highlight EOL whitespace, http://vim.wikia.com/wiki/Highlight_unwanted_spaces

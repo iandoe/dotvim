@@ -49,9 +49,6 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = git://github.com/vim-scripts/Gundo.git
-[submodule "bundle/yankring"]
-	path = bundle/yankring
-	url = https://github.com/chrismetcalf/vim-yankring.git
 [submodule "bundle/css-colors"]
 	path = bundle/css-colors
 	url = git://github.com/skammer/vim-css-color.git
@@ -76,3 +73,6 @@
 [submodule "bundle/zencoding"]
 	path = bundle/zencoding
 	url = https://github.com/mattn/zencoding-vim.git
+[submodule "bundle/neocomplcache"]
+	path = bundle/neocomplcache
+	url = https://github.com/Shougo/neocomplcache.git
