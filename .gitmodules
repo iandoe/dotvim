@@ -76,3 +76,6 @@
 [submodule "bundle/neocomplcache"]
 	path = bundle/neocomplcache
 	url = https://github.com/Shougo/neocomplcache.git
+[submodule "bundle/vroom"]
+	path = bundle/vroom
+	url = https://github.com/skalnik/vim-vroom.git

@@ -36,9 +36,9 @@ set sidescroll=1
 set wrap
 set textwidth=79
 " Tab settings
-set tabstop    =2
-set softtabstop=2
-set shiftwidth =2
+set ts=2
+set sts=2
+set sw=2
 set smarttab
 " Use spaces
 set expandtab
@@ -145,7 +145,7 @@ let delimitMate_matchpairs         = '(:),[:],{:}'
 let delimitMate_quotes             = "\" ' ` |"
 " NERDtre
 " map <leader>nt to toggle nerdtree
-nmap <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader>t :NERDTreeToggle<CR>
 " map <leader>gu to toggle gundo
 nmap <Leader>gu :GundoToggle<CR>
 " Set NERDtree display options
@@ -153,16 +153,32 @@ let NERDTreeShowBookmarks=1
 let NERDTreeWinPos="right"
 let NERDTreeMinimalUI=1
 
-" Set Powerline plugin display mode
 " Put Gundo on the right side of the window
 let g:gundo_right=1
 
 " Set Keymappings
-" Map ,yr to :YRShow (YankRing)
-nmap <Leader>yr :YRShow<CR>
-
-" Map ,hl to turnoff search highlight
-nmap <Leader>hl :nohl<CR>
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+" Clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<cr>
+" Open files in directory of current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+" Rename current file
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'))
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
 
 " Visual text bubbling using unimpaired plugin
 vmap <C-Up> [egv
@@ -181,8 +197,6 @@ let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
-" AutoComplPop like behavior.
-let g:neocomplcache_enable_auto_select = 1
 
 " Closetag plugin
 :au Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
