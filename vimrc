@@ -114,6 +114,8 @@ nnoremap k gk
 " Map <Leader> to ,
 let g:mapleader = ","
 nnoremap <CR> :nohlsearch<cr>
+" Select pasted text
+nnoremap gp `[v`]
 " Mapping for tabnav
 nmap <c-left> gT
 nmap <c-right> gt
