@@ -22,9 +22,9 @@ set hidden
 set lz " lazy redraw"
 set modelines=0 " no modelines
 " Set linenumber to absolute
-" set number
+set number
 " Set linenumber to relative
-set relativenumber
+"set relativenumber
 " 3 lines above and below cursor when scrolling
 set formatoptions=cqrn1t
 set formatoptions-=o "dont continue comments when pushing o/O
@@ -74,7 +74,9 @@ set ts=2
 set sts=2
 set sw=2
 set smarttab
-
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
 " }}}
 
 " Set Misc stuff {{{
@@ -111,9 +113,22 @@ nnoremap k gk
 " }}}
 
 " Set Keymappings {{{
+
+" Various {{{
 " Map <Leader> to ,
 let g:mapleader = ","
 nnoremap <CR> :nohlsearch<cr>
+
+" Made D behave
+nnoremap D d$
+
+" Don't move on *
+nnoremap * *<c-o>
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Select pasted text
 nnoremap gp `[v`]
 " Mapping for tabnav
@@ -124,6 +139,12 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+" Heresy
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+" }}}
+
+" Files {{{
 " Open files in directory of current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
@@ -139,9 +160,77 @@ function! RenameFile()
     endif
 endfunction
 map <leader>n :call RenameFile()<cr>
+
+" }}}
+
+" Folding {{{
+
+set foldlevelstart=0
+
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+
+" }}}
+
+" Numbers {{{
+
+" Motion for numbers.  Great for CSS.  Lets you do things like this:
+"
+" margin-top: 200px; -> daN -> margin-top: px;
+"              ^                          ^
+" TODO: Handle floats.
+
+onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+
+function! s:NumberTextObject(whole)
+    normal! v
+
+    while getline('.')[col('.')] =~# '\v[0-9]'
+        normal! l
+    endwhile
+
+    if a:whole
+        normal! o
+
+        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+            normal! h
+        endwhile
+    endif
+endfunction
+
+" }}}
+
 " }}}
 
 " Plugins {{{
+
 " CtrlP {{{
 " Use Ctrl-B to navigate the buffers with CtrlP plugin
 let g:ctrlp_clear_cache_on_exit = 0
@@ -204,10 +293,16 @@ vmap <C-Down> ]egv
 vmap <C-Left> <gv
 vmap <C-Right> >gv
 " }}}
+
+" Powerline {{{
+let g:Powerline_symbols='fancy'
+" }}}
+
 " }}}
 
 " Set various GUI and Appearance Behaviour {{{
-set guifont=Anonymous:h14 " Set the Font
+"set guifont=Anonymous:h14 " Set the Font
+set guifont=Bitstream\ Vera\ Sans\ Mono\ for\ Powerline:h14
 set guioptions=aAce " Set the Gui options
 set cul " Highlight current line"
 colors Tomorrow-Night-Eighties " Set the colorscheme
@@ -234,6 +329,7 @@ endif
 "}}}
 
 " Filetype Specific {{{
+
 " CSS, LessCSS and SCSS {{{
 augroup ft_css
     au!
@@ -253,4 +349,5 @@ augroup ft_vim
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 " }}}
+
 " }}}
