@@ -74,9 +74,6 @@ set ts=2
 set sts=2
 set sw=2
 set smarttab
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
 " }}}
 
 " Set Misc stuff {{{
