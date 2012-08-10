@@ -10,6 +10,23 @@ def x(snip):
         snip.rv = ""
 endglobal
 
+###########
+#  Video  #
+###########
+snippet video "MEjs video"
+<video class="videowrapper" width="${2:640}" height="${3:480}"
+poster="${4:image.jpg}" controls="controls" preload="auto">
+    <source type="video/mp4" src="${1:video}.mp4" />
+    <source type="video/ogg" src="$1.ogv" />
+    <object width="$2" height="$3" type="application/x-shockwave-flash" data="flashmediaelement.swf">
+        <param name="movie" value="flashmediaelement.swf" />
+        <param name="flashvars" value="controls=true&amp;file=$1.mp4" />
+        <!-- Image as a last resort -->
+        <img src="$4" width="$2" height="$3" title="No video playback capabilities" />
+    </object>
+</video>
+endsnippet
+
 ############
 # Doctypes #
 ############
@@ -233,13 +250,14 @@ endsnippet
 snippet fieldset "Fieldset"
 <fieldset id="${1/[\w\d]+|( )/(?1:_:\L$0\E)/g}" ${2:class="${3:}"}>
 	<legend>$1</legend>
-	
+
 	$0
 </fieldset>
 endsnippet
 
 snippet movie "Embed QT movie (movie)" b
-<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+<object width="$2" height="$3"
+classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
 	<param name="src" value="$1"`!p x(snip)`>
 	<param name="controller" value="$4"`!p x(snip)`>
 	<param name="autoplay" value="$5"`!p x(snip)`>
