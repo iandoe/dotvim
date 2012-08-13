@@ -79,3 +79,6 @@
 [submodule "bundle/vroom"]
 	path = bundle/vroom
 	url = https://github.com/skalnik/vim-vroom.git
+[submodule "bundle/easymotion"]
+	path = bundle/easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git

@@ -22,13 +22,13 @@ set hidden
 set lz " lazy redraw"
 set modelines=0 " no modelines
 " Set linenumber to absolute
-set number
+"set number
 " Set linenumber to relative
-"set relativenumber
-" 3 lines above and below cursor when scrolling
+set relativenumber
 set formatoptions=cqrn1t
 set formatoptions-=o "dont continue comments when pushing o/O
 "vertical/horizontal scroll off settings
+" 3 lines above and below cursor when scrolling
 set scrolloff=3
 set sidescrolloff=7
 set sidescroll=1
@@ -299,10 +299,15 @@ let g:Powerline_symbols='fancy'
 
 " Set various GUI and Appearance Behaviour {{{
 "set guifont=Anonymous:h14 " Set the Font
-set guifont=Bitstream\ Vera\ Sans\ Mono\ for\ Powerline:h14
+set guifont=Consolas:h14
 set guioptions=aAce " Set the Gui options
 set cul " Highlight current line"
-colors Tomorrow-Night-Eighties " Set the colorscheme
+colors solarized " Set the colorscheme
+set background=light
+" change the default EasyMotion shading to more readable with Solarized
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
 " }}}
 
 " Removes trailing spaces on file save {{{
@@ -314,6 +319,11 @@ autocmd FileWritePre    * :call TrimWhiteSpace()
 autocmd FileAppendPre   * :call TrimWhiteSpace()
 autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre     * :call TrimWhiteSpace()
+" }}}
+
+" Save manual folds {{{
+au BufWinLeave * :silent! mkview
+au BufWinEnter * :silent! loadview
 " }}}
 
 " Remember cursor position on file opening {{{
@@ -348,3 +358,4 @@ augroup END
 " }}}
 
 " }}}
+
