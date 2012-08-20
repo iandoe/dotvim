@@ -85,3 +85,6 @@
 [submodule "bundle/matchtag"]
 	path = bundle/matchtag
 	url = git://github.com/iandoe/MatchTag.git
+[submodule "bundle/gitv"]
+	path = bundle/gitv
+	url = git://github.com/gregsexton/gitv.git
