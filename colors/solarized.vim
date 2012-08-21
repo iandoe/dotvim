@@ -808,6 +808,10 @@ exe "hi! rubyDefine"     . s:fg_base1  .s:bg_back   .s:fmt_bold
 "hi! link rubyClassVariable     Identifier
 "hi! link rubyConstant          Type
 "}}}
+" IndentGuides Highlighting "{{{
+exe "hi! IndentGuidesOdd"  .s:fg_base1 .s:bg_base02
+exe "hi! IndentGuidesEven" .s:fg_base1 .s:bg_base02
+"}}}
 " haskell syntax highlighting"{{{
 " ---------------------------------------------------------------------
 " For use with syntax/haskell.vim : Haskell Syntax File

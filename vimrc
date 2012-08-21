@@ -75,7 +75,8 @@ set sts=2
 set sw=2
 set smarttab
 " }}}
-" Use sane regexes.
+
+" Use sane regexes. {{{{
 nnoremap / /\v
 vnoremap / /\v
 " }}}
@@ -299,6 +300,12 @@ vmap <C-Right> >gv
 let g:Powerline_symbols='fancy'
 " }}}
 
+" IndentGuides {{{
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_auto_colors = 0
+" }}}
+
 " }}}
 
 " Set various GUI and Appearance Behaviour {{{
@@ -358,6 +365,13 @@ augroup ft_vim
     au FileType vim setlocal foldmethod=marker
     au FileType help setlocal textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+" }}}
+
+" HTML, PHP{{{
+augroup ft_htmlphp
+    au!
+    au FileType html,php setlocal ts=4 sts=4 sw=4
 augroup END
 " }}}
 
