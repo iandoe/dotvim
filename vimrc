@@ -124,6 +124,8 @@ nnoremap <CR> :nohlsearch<cr>
 " Made D behave
 nnoremap D d$
 
+" Visual mode $ to g_ (last char on line)
+vnoremap $ g_
 " Don't move on *
 nnoremap * *<c-o>
 
